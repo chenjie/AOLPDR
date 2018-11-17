@@ -49,7 +49,7 @@ def threshold_plate(plate_image):
         cv2.waitKey(0)
 
 
-threshold_plate("plates/plate1.png")
+# threshold_plate("plates/plate1.png")
 
 
 def threshold_plate_enhance(plate_image):
@@ -105,3 +105,6 @@ def threshold_plate_enhance(plate_image):
     cv2.waitKey(0)
 
 # threshold_plate_enhance("plates/plate1.png")
+
+if __name__ == "__main__":
+    threshold_plate("plates/plate1.png")
