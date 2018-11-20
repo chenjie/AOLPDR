@@ -29,24 +29,58 @@ def threshold_plate(plate_image):
     # cv2.imshow("Thresh Binary Inverse", threshold)
     # cv2.waitKey(0)
 
-    labels = measure.label(threshold, neighbors=8, background=0)
+    # Find connecting regions of threshold regions
+    connecting_regions = measure.label(threshold, neighbors=8, background=0)
+    unique_regions = np.unique(connecting_regions)
     charCandidates = np.zeros(threshold.shape, dtype="uint8")
+    count = 0
 
     # loop over the unique components
-    for label in np.unique(labels):
+    for region in unique_regions:
         # if this is the background label, ignore it
-        if label == 0:
+        if region == 0:
             continue
-
 
         # otherwise, construct the label mask to display only connected components for the
         # current label, then find contours in the label mask
-        labelMask = np.zeros(threshold.shape, dtype="uint8")
-        labelMask[labels == label] = 255
-        cnts = cv2.findContours(labelMask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        cnts = cnts[0] if imutils.is_cv2() else cnts[1]
-        cv2.imshow("label", labelMask)
-        cv2.waitKey(0)
+        regionMask = np.zeros(threshold.shape, dtype="uint8")
+        regionMask[connecting_regions == region] = 255
+        cnts = cv2.findContours(regionMask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        cnts = cnts[1]
+
+        # ensure at least one contour was found in the mask
+        if len(cnts) > 0:
+            # grab the largest contour which corresponds to the component in the mask, then
+            # grab the bounding box for the contour
+            c = max(cnts, key=cv2.contourArea)
+            (boxX, boxY, boxW, boxH) = cv2.boundingRect(c)
+
+            # compute the aspect ratio, solidity, and height ratio for the component
+            aspectRatio = boxW / float(boxH)
+            solidity = cv2.contourArea(c) / float(boxW * boxH)
+            heightRatio = boxH / float(plate.shape[0])
+
+            # determine if the aspect ratio, solidity, and height of the contour pass
+            # the rules tests
+            keepAspectRatio = aspectRatio < 1.0
+            keepSolidity = solidity > 0.15
+            keepHeight = heightRatio > 0.4 and heightRatio < 0.95
+
+            # check to see if the component passes all the tests
+            if keepAspectRatio and keepSolidity and keepHeight:
+                # compute the convex hull of the contour and draw it on the character
+                # candidates mask
+                hull = cv2.convexHull(c)
+                cv2.drawContours(charCandidates, [hull], -1, 255, -1)
+                count += 1
+
+        # cv2.imshow("label", labelMask)
+        # cv2.waitKey(0)
+    cv2.imshow("charCandidates", charCandidates)
+    cv2.waitKey(0)
+    print("There are: " + str(len(np.unique(connecting_regions))) + " connecting region")
+    print(str(count) + " regions are plate characters")
 
 
 # threshold_plate("plates/plate1.png")
