@@ -6,3 +6,12 @@ Perform character segmentation. 首先将图片进行二值化(inverse)，然后
 threshold_plate_enhance:
 图片二值化 在某些情况下会有很差的效果，例如，车牌的一半被阴影遮盖. 通过Stack Overflow 得到enhance 算法。
 然后用 find contour 找到character 的外轮廓
+
+Segmentation 步骤:
+
+Step1: 照片二值化 (Binary Threshold)
+Step2: 通过 measure.label 找二值化图片中连在一起的regions，用np.unique找出独立的regions, 若region = 0 即为background
+Step3: 展示每一个独立regions
+Step4: 在每一个独立region里，apply OpenCV 的 findcountour，找出最大外轮廓
+Step5: 通过外轮廓的大小比例以及面积，确认该region是不是 candidate character
+Step6: 将合格的regions 画到原图上

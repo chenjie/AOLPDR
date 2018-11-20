@@ -35,6 +35,8 @@ def threshold_plate(plate_image):
     charCandidates = np.zeros(threshold.shape, dtype="uint8")
     count = 0
 
+    print(connecting_regions)
+
     # loop over the unique components
     for region in unique_regions:
         # if this is the background label, ignore it
@@ -75,7 +77,7 @@ def threshold_plate(plate_image):
                 cv2.drawContours(charCandidates, [hull], -1, 255, -1)
                 count += 1
 
-        # cv2.imshow("label", labelMask)
+        # cv2.imshow("label", regionMask)
         # cv2.waitKey(0)
     cv2.imshow("charCandidates", charCandidates)
     cv2.waitKey(0)
