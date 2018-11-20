@@ -15,3 +15,84 @@ Step3: 展示每一个独立regions
 Step4: 在每一个独立region里，apply OpenCV 的 findcountour，找出最大外轮廓
 Step5: 通过外轮廓的大小比例以及面积，确认该region是不是 candidate character
 Step6: 将合格的regions 画到原图上
+
+Threshold 调整:
+
+Plate4.png (failed case) ================================
+
+aspectRatio: 0.417910447761194
+heightRatio: 0.38285714285714284
+solidity: 0.8939232409381663
+
+aspectRatio: 0.43283582089552236
+heightRatio: 0.38285714285714284
+solidity: 0.5617601646937725
+
+aspectRatio: 0.4393939393939394
+heightRatio: 0.37714285714285717
+solidity: 0.8863636363636364
+
+aspectRatio: 0.42424242424242425
+heightRatio: 0.37714285714285717
+solidity: 0.9063852813852814
+
+aspectRatio: 0.4393939393939394
+heightRatio: 0.37714285714285717
+solidity: 0.4093521421107628
+
+aspectRatio: 0.4393939393939394
+heightRatio: 0.37714285714285717
+solidity: 0.5326541274817137
+
+Plate3.png (success) =========================================
+
+aspectRatio: 0.359375
+heightRatio: 0.4050632911392405
+solidity: 0.48539402173913043
+
+aspectRatio: 0.375
+heightRatio: 0.4050632911392405
+solidity: 0.5960286458333334
+
+aspectRatio: 0.375
+heightRatio: 0.4050632911392405
+solidity: 0.6624348958333334
+
+Plate1.png (success) =========================================
+
+aspectRatio: 0.4011299435028249
+heightRatio: 0.46578947368421053
+solidity: 0.36770907933476565
+
+aspectRatio: 0.3977272727272727
+heightRatio: 0.4631578947368421
+solidity: 0.3261363636363636
+
+aspectRatio: 0.40229885057471265
+heightRatio: 0.45789473684210524
+solidity: 0.6904351395730706
+
+通过修改 threshold， plate4 不再fail 但这个threshold 无法识别出 1 因为 1 特别窄
+获取 几幅图中 1 的参数
+
+Plate1.png
+aspectRatio: 0.29545454545454547
+heightRatio: 0.4631578947368421
+solidity: 0.4366258741258741
+
+Plate2.jpeg
+aspectRatio: 0.2714285714285714
+heightRatio: 0.445859872611465
+solidity: 0.3706766917293233
+
+Current Threshold
+0.32 < aspectRatio < 0.46
+solidity > 0.25
+heightRatio > 0.3 and heightRatio < 0.5
+
+New Threshold (修改 aspect ratio)
+0.2 < aspectRatio < 0.46
+solidity > 0.25
+heightRatio > 0.3 and heightRatio < 0.5
+
+

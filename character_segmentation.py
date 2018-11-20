@@ -6,28 +6,18 @@ from skimage import measure
 from skimage.filters import threshold_local
 from skimage import segmentation
 
+PLATE_CHAR_ASPECT_RATIO = 1.0
+PLATE_CHAR_HEIGHT_RATIO_UPPER = 0.95
+PLATE_CHAR_HEIGHT_RATIO_LOWER = 0.4
+
+
+
 def segmentation(plate_image):
-    plate_img = cv2.imread(plate_image)
-    cvt_plate = cv2.split(cv2.cvtColor(plate_img, cv2.COLOR_BGR2HSV))[2]
-    thresh_local = threshold_local(cvt_plate, 29, offset=15, method="gaussian")
-    threshold = (cvt_plate > thresh_local).astype("uint8") * 255
-    threshold = cv2.bitwise_not(threshold)
-
-    # resize the license plate region to a canonical size
-    plate = imutils.resize(plate_img, width=400)
-    thresh = imutils.resize(threshold, width=400)
-    cv2.imshow("Thresh", thresh)
-    cv2.waitKey(0)
-
-# segmentation('plates/plate1.png')
-
-
-def threshold_plate(plate_image):
     plate = cv2.imread(plate_image)
     gray_plate = cv2.cvtColor(plate,cv2.COLOR_BGR2GRAY)
     ret, threshold = cv2.threshold(gray_plate, 127, 255, cv2.THRESH_BINARY_INV)
-    # cv2.imshow("Thresh Binary Inverse", threshold)
-    # cv2.waitKey(0)
+    cv2.imshow("Thresh Binary Inverse", threshold)
+    cv2.waitKey(0)
 
     # Find connecting regions of threshold regions
     connecting_regions = measure.label(threshold, neighbors=8, background=0)
@@ -35,7 +25,7 @@ def threshold_plate(plate_image):
     charCandidates = np.zeros(threshold.shape, dtype="uint8")
     count = 0
 
-    print(connecting_regions)
+    # print(connecting_regions)
 
     # loop over the unique components
     for region in unique_regions:
@@ -60,14 +50,19 @@ def threshold_plate(plate_image):
 
             # compute the aspect ratio, solidity, and height ratio for the component
             aspectRatio = boxW / float(boxH)
-            solidity = cv2.contourArea(c) / float(boxW * boxH)
             heightRatio = boxH / float(plate.shape[0])
+            solidity = cv2.contourArea(c) / float(boxW * boxH)
+
+            # print("aspectRatio: " + str(aspectRatio))
+            # print("heightRatio: " + str(heightRatio))
+            # print("solidity: " + str(solidity))
+            # print("===================================")
 
             # determine if the aspect ratio, solidity, and height of the contour pass
             # the rules tests
-            keepAspectRatio = aspectRatio < 1.0
-            keepSolidity = solidity > 0.15
-            keepHeight = heightRatio > 0.4 and heightRatio < 0.95
+            keepAspectRatio = 0.2 < aspectRatio < 0.46
+            keepSolidity = solidity > 0.25
+            keepHeight = heightRatio > 0.3 and heightRatio < 0.5
 
             # check to see if the component passes all the tests
             if keepAspectRatio and keepSolidity and keepHeight:
@@ -85,7 +80,6 @@ def threshold_plate(plate_image):
     print(str(count) + " regions are plate characters")
 
 
-# threshold_plate("plates/plate1.png")
 
 
 def threshold_plate_enhance(plate_image):
@@ -143,4 +137,10 @@ def threshold_plate_enhance(plate_image):
 # threshold_plate_enhance("plates/plate1.png")
 
 if __name__ == "__main__":
-    threshold_plate("plates/plate1.png")
+    plate1 = "plates/plate1.png"
+    plate2 = "plates/plate2.jpeg"
+    plate3 = "plates/plate3.png"
+    plate4 = "plates/plate4.png"
+
+
+    segmentation(plate4)
