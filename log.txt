@@ -11,8 +11,8 @@ Segmentation 步骤:
 
 Step1: 照片二值化 (Binary Threshold)
 Step2: 通过 measure.label 找二值化图片中连在一起的regions，用np.unique找出独立的regions, 若region = 0 即为background
-Step3: 展示每一个独立regions
-Step4: 在每一个独立region里，apply OpenCV 的 findcountour，找出最大外轮廓
+Step3: 展示每一个独立regions (create mask)
+Step4: 在每一个独立region里，apply OpenCV 的 findcontour，找出最大外轮廓
 Step5: 通过外轮廓的大小比例以及面积，确认该region是不是 candidate character
 Step6: 将合格的regions 画到原图上
 

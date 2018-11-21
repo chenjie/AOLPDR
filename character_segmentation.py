@@ -15,6 +15,7 @@ PLATE_CHAR_HEIGHT_RATIO_LOWER = 0.4
 def segmentation(plate_image):
     plate = cv2.imread(plate_image)
     gray_plate = cv2.cvtColor(plate,cv2.COLOR_BGR2GRAY)
+    # Transform plate to binary
     ret, threshold = cv2.threshold(gray_plate, 127, 255, cv2.THRESH_BINARY_INV)
     cv2.imshow("Thresh Binary Inverse", threshold)
     cv2.waitKey(0)
@@ -38,6 +39,9 @@ def segmentation(plate_image):
         regionMask = np.zeros(threshold.shape, dtype="uint8")
         regionMask[connecting_regions == region] = 255
         cnts = cv2.findContours(regionMask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        # cv2.imshow("label", regionMask)
+        # cv2.waitKey(0)
 
         cnts = cnts[1]
 
@@ -72,8 +76,6 @@ def segmentation(plate_image):
                 cv2.drawContours(charCandidates, [hull], -1, 255, -1)
                 count += 1
 
-        # cv2.imshow("label", regionMask)
-        # cv2.waitKey(0)
     cv2.imshow("charCandidates", charCandidates)
     cv2.waitKey(0)
     print("There are: " + str(len(np.unique(connecting_regions))) + " connecting region")
@@ -83,7 +85,7 @@ def segmentation(plate_image):
 
 
 def threshold_plate_enhance(plate_image):
-    img = cv2.imread('plates/plate1.png', 0)
+    img = cv2.imread(plate_image, 0)
 
     # Number of rows and columns
     rows = img.shape[0]
@@ -141,6 +143,9 @@ if __name__ == "__main__":
     plate2 = "plates/plate2.jpeg"
     plate3 = "plates/plate3.png"
     plate4 = "plates/plate4.png"
+    plate5 = "plates/plate5.png"
+    plate6 = "plates/plate6.png"
 
 
-    segmentation(plate4)
+    #segmentation(plate6)
+    #threshold_plate_enhance(plate6)
