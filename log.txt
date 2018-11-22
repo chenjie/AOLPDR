@@ -96,3 +96,39 @@ solidity > 0.25
 heightRatio > 0.3 and heightRatio < 0.5
 
 
+
+
+
+
+
+
+
+
+
+
+
+Detect Plate:
+安大略省的车牌 长:宽 1：2
+
+使用opencv检测车牌需要涉及形态学
+https://www.jianshu.com/p/05ef50ac89ac
+https://blog.csdn.net/keith_bb/article/details/54578186?locationNum=6&fps=1
+https://www.cnblogs.com/little-monkey/p/7236188.html
+
+开/闭运算 (Opening/Closing)
+先腐蚀后膨胀叫开运算（因为先腐蚀会分开物体，这样容易记住），其作用是：分离物体，消除小区域。这类形态学操作用cv2.morphologyEx()函数实现
+
+闭运算(Closing) 
+闭运算在数学上是先膨胀再腐蚀的结果
+能够排除小型黑洞(黑色区域)，能够平滑对象的轮廓，但是与开运算不同的是闭运算一般会将狭窄的缺口连接起来形成细长的弯口，并填充比结构元素小的洞。 
+
+
+黑帽：闭运算后的图减去原图：closing - src
+黑帽运算后的效果图突出了比原图轮廓周围的区域更暗的区域，且这一操作和选择的核的大小相关。(车牌的比例)
+所以，黑帽运算用来分离比邻近点暗一些的斑块。非常完美的轮廓效果图（我们的case因为车牌和车牌号的颜色反差较大，深蓝色和白色，所以适合使用黑帽运算）
+
+APPLYING A SIMPLE BLACKHAT OPERATION IS ENOUGH TO REVEAL THE DARK TEXT OF THE LICENSE PLATE CHARACTERS AGAINST THE LIGHT BACKGROUND.
+
+
+
+

@@ -26,8 +26,6 @@ def segmentation(plate_image):
     charCandidates = np.zeros(threshold.shape, dtype="uint8")
     count = 0
 
-    # print(connecting_regions)
-
     # loop over the unique components
     for region in unique_regions:
         # if this is the background label, ignore it
@@ -81,6 +79,71 @@ def segmentation(plate_image):
     print("There are: " + str(len(np.unique(connecting_regions))) + " connecting region")
     print(str(count) + " regions are plate characters")
 
+    if count == 0:
+        print("Using enhance algorithm")
+
+        threshold = threshold_plate_enhance(plate_image)
+
+        # Find connecting regions of threshold regions
+        connecting_regions = measure.label(threshold, neighbors=8, background=0)
+        unique_regions = np.unique(connecting_regions)
+        charCandidates = np.zeros(threshold.shape, dtype="uint8")
+        count = 0
+
+        # loop over the unique components
+        for region in unique_regions:
+            # if this is the background label, ignore it
+            if region == 0:
+                continue
+
+            # otherwise, construct the label mask to display only connected components for the
+            # current label, then find contours in the label mask
+            regionMask = np.zeros(threshold.shape, dtype="uint8")
+            regionMask[connecting_regions == region] = 255
+            cnts = cv2.findContours(regionMask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+            # cv2.imshow("label", regionMask)
+            # cv2.waitKey(0)
+
+            cnts = cnts[1]
+
+            # ensure at least one contour was found in the mask
+            if len(cnts) > 0:
+                # grab the largest contour which corresponds to the component in the mask, then
+                # grab the bounding box for the contour
+                c = max(cnts, key=cv2.contourArea)
+                (boxX, boxY, boxW, boxH) = cv2.boundingRect(c)
+
+                # compute the aspect ratio, solidity, and height ratio for the component
+                aspectRatio = boxW / float(boxH)
+                heightRatio = boxH / float(plate.shape[0])
+                solidity = cv2.contourArea(c) / float(boxW * boxH)
+
+                # print("aspectRatio: " + str(aspectRatio))
+                # print("heightRatio: " + str(heightRatio))
+                # print("solidity: " + str(solidity))
+                # print("===================================")
+
+                # determine if the aspect ratio, solidity, and height of the contour pass
+                # the rules tests
+                keepAspectRatio = 0.2 < aspectRatio < 0.46
+                keepSolidity = solidity > 0.25
+                keepHeight = heightRatio > 0.3 and heightRatio < 0.5
+
+                # check to see if the component passes all the tests
+                if keepAspectRatio and keepSolidity and keepHeight:
+                    # compute the convex hull of the contour and draw it on the character
+                    # candidates mask
+                    hull = cv2.convexHull(c)
+                    cv2.drawContours(charCandidates, [hull], -1, 255, -1)
+                    count += 1
+
+        cv2.imshow("charCandidates", charCandidates)
+        cv2.waitKey(0)
+        print("There are: " + str(len(np.unique(connecting_regions))) + " connecting region")
+        print(str(count) + " regions are plate characters")
+
+
 
 
 
@@ -131,6 +194,8 @@ def threshold_plate_enhance(plate_image):
     Ithresh = Ihmf2 < 90
     Ithresh = 255 * Ithresh.astype("uint8")
 
+    return Ithresh
+
     # Show all images
 
     cv2.imshow('Thresholded Result', Ithresh)
@@ -147,5 +212,5 @@ if __name__ == "__main__":
     plate6 = "plates/plate6.png"
 
 
-    #segmentation(plate6)
+    segmentation(plate6)
     #threshold_plate_enhance(plate6)
