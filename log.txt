@@ -129,6 +129,12 @@ https://www.cnblogs.com/little-monkey/p/7236188.html
 
 APPLYING A SIMPLE BLACKHAT OPERATION IS ENOUGH TO REVEAL THE DARK TEXT OF THE LICENSE PLATE CHARACTERS AGAINST THE LIGHT BACKGROUND.
 
+OTSU's method
+An image thresholding algorithm for reduction of a gray level image to a binary image. Otsu’s thresholding chooses the threshold to minimize the intraclass variance of the thresholded black and white pixels.
+作用在于segmentation
+
+
+
 
 
 
