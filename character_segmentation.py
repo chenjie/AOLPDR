@@ -9,7 +9,7 @@ from skimage import segmentation
 PLATE_CHAR_ASPECT_RATIO = 1.0
 PLATE_CHAR_HEIGHT_RATIO_UPPER = 0.95
 PLATE_CHAR_HEIGHT_RATIO_LOWER = 0.4
-MINCHAR_W = 80
+
 
 def segmentation(plate_image):
     plate = cv2.imread(plate_image)
@@ -209,6 +209,7 @@ def scissor(plate_image):
     chars = []
 
     for c in cnts:
+        MINCHAR_W = np.shape(charCandidate)[0] // 4
         (boxX, boxY, boxW, boxH) = cv2.boundingRect(c)
         dX = min(MINCHAR_W, MINCHAR_W - boxW) // 2
         boxX -= dX
@@ -241,6 +242,6 @@ if __name__ == "__main__":
 
     # segmentation(plate1)
     #threshold_plate_enhance(plate6)
-    scissor(plate2)
+    scissor(plate1)
 
 
