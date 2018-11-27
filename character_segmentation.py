@@ -209,14 +209,10 @@ def scissor(plate_image):
     chars = []
 
     for c in cnts:
-        MINCHAR_W = np.shape(charCandidate)[0] // 4
         (boxX, boxY, boxW, boxH) = cv2.boundingRect(c)
-        dX = min(MINCHAR_W, MINCHAR_W - boxW) // 2
-        boxX -= dX
-        boxW += (dX * 2)
-
         boxes.append(((boxX, boxY, boxX + boxW, boxY + boxH)))
 
+    # Order boxes from left to right
     boxes = sorted(boxes, key=lambda b:b[0])
 
     for (startX, startY, endX, endY) in boxes:
@@ -242,6 +238,6 @@ if __name__ == "__main__":
 
     # segmentation(plate1)
     #threshold_plate_enhance(plate6)
-    scissor(plate1)
+    scissor(plate3)
 
 
