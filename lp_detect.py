@@ -16,13 +16,15 @@ def detect_plate_region(car_image):
         img = imutils.resize(img, width=640)
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     rectangle_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (10, 5))
+
+    # Perform Blackhat operation
     black_hat = cv2.morphologyEx(gray_img, cv2.MORPH_BLACKHAT, rectangle_kernel)
 
     cv2.imshow("black hat", black_hat)
     cv2.waitKey(0)
 
     # Perform Closing operation (Dilation followed by Erosion)
-    square_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    square_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
     closing = cv2.morphologyEx(gray_img, cv2.MORPH_CLOSE, square_kernel)
     cv2.imshow("closing", closing)
     cv2.waitKey(0)
@@ -144,7 +146,7 @@ if __name__ == "__main__":
     car10 = "cars/car10.jpg"
 
 
-    detect_plate(car6)
+    detect_plate(car2)
 
 
 

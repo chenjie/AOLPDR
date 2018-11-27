@@ -9,14 +9,13 @@ from skimage import segmentation
 PLATE_CHAR_ASPECT_RATIO = 1.0
 PLATE_CHAR_HEIGHT_RATIO_UPPER = 0.95
 PLATE_CHAR_HEIGHT_RATIO_LOWER = 0.4
-
-
+MINCHAR_W = 80
 
 def segmentation(plate_image):
     plate = cv2.imread(plate_image)
     gray_plate = cv2.cvtColor(plate,cv2.COLOR_BGR2GRAY)
     # Transform plate to binary
-    ret, threshold = cv2.threshold(gray_plate, 127, 255, cv2.THRESH_BINARY_INV)
+    ret, threshold = cv2.threshold(gray_plate, 110, 255, cv2.THRESH_BINARY_INV)
     cv2.imshow("Thresh Binary Inverse", threshold)
     cv2.waitKey(0)
 
@@ -74,12 +73,12 @@ def segmentation(plate_image):
                 cv2.drawContours(charCandidates, [hull], -1, 255, -1)
                 count += 1
 
-    cv2.imshow("charCandidates", charCandidates)
-    cv2.waitKey(0)
+    # cv2.imshow("charCandidates", charCandidates)
+    # cv2.waitKey(0)
     print("There are: " + str(len(np.unique(connecting_regions))) + " connecting region")
     print(str(count) + " regions are plate characters")
 
-    if count == 0:
+    if count <= 5:
         print("Using enhance algorithm")
 
         threshold = threshold_plate_enhance(plate_image)
@@ -138,12 +137,16 @@ def segmentation(plate_image):
                     cv2.drawContours(charCandidates, [hull], -1, 255, -1)
                     count += 1
 
-        cv2.imshow("charCandidates", charCandidates)
-        cv2.waitKey(0)
+        # cv2.imshow("charCandidates", charCandidates)
+        # cv2.waitKey(0)
         print("There are: " + str(len(np.unique(connecting_regions))) + " connecting region")
         print(str(count) + " regions are plate characters")
 
+    charThreshold = cv2.bitwise_and(threshold, threshold, mask=charCandidates)
+    # cv2.imshow("charThreshold", charThreshold)
+    # cv2.waitKey(0)
 
+    return (charCandidates, charThreshold)
 
 
 
@@ -196,12 +199,33 @@ def threshold_plate_enhance(plate_image):
 
     return Ithresh
 
-    # Show all images
+def scissor(plate_image):
+    charCandidate, charThreshold = segmentation(plate_image)
 
-    cv2.imshow('Thresholded Result', Ithresh)
-    cv2.waitKey(0)
+    cnts =  cv2.findContours(charCandidate.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cnts[1]
 
-# threshold_plate_enhance("plates/plate1.png")
+    boxes = []
+    chars = []
+
+    for c in cnts:
+        (boxX, boxY, boxW, boxH) = cv2.boundingRect(c)
+        dX = min(MINCHAR_W, MINCHAR_W - boxW) // 2
+        boxX -= dX
+        boxW += (dX * 2)
+
+        boxes.append(((boxX, boxY, boxX + boxW, boxY + boxH)))
+
+    boxes = sorted(boxes, key=lambda b:b[0])
+
+    for (startX, startY, endX, endY) in boxes:
+        current_char = charThreshold[startY:endY, startX:endX]
+        chars.append(current_char)
+        cv2.imshow("character", current_char)
+        cv2.waitKey(0)
+
+    return chars
+
 
 if __name__ == "__main__":
     plate1 = "plates/plate1.png"
@@ -210,7 +234,13 @@ if __name__ == "__main__":
     plate4 = "plates/plate4.png"
     plate5 = "plates/plate5.png"
     plate6 = "plates/plate6.png"
+    plate7 = "plates/plate7.png"
+    plate8 = "plates/plate8.png"
+    plate9 = "plates/plate9.png"
 
 
-    segmentation(plate6)
+    # segmentation(plate1)
     #threshold_plate_enhance(plate6)
+    scissor(plate2)
+
+

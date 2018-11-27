@@ -14,6 +14,7 @@ Step2: 通过 measure.label 找二值化图片中连在一起的regions，用np.
 Step3: 展示每一个独立regions (create mask)
 Step4: 在每一个独立region里，apply OpenCV 的 findcontour，找出最大外轮廓
 Step5: 通过外轮廓的大小比例以及面积，确认该region是不是 candidate character
+	(Solidity is the ratio of contour area to its convex hull area.)
 Step6: 将合格的regions 画到原图上
 
 Threshold 调整:
