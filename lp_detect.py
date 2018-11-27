@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 import imutils
 
-minPlateW=80
-minPlateH=40
+minPlateW=90
+minPlateH=30
 
 def detect_plate_region(car_image):
     # Since license plate have great contrast between plate background
@@ -100,7 +100,7 @@ def detect_plate_region(car_image):
 
         # ensure the aspect ratio, width, and height of the bounding box fall within
         # tolerable limits, then update the list of license plate regions
-        if (aspectRatio > 2 and aspectRatio < 6) and h > minPlateH and w > minPlateW:
+        if (aspectRatio > 1.5 and aspectRatio < 6) and h > minPlateH and w > minPlateW:
             print("added")
             regions.append(box)
 
@@ -125,6 +125,9 @@ def detect_plate(car_image):
 
 
 
+def plate_region(car_image):
+    pass
+
 
 
 
@@ -140,10 +143,8 @@ if __name__ == "__main__":
     car9 = "cars/car9.jpg"
     car10 = "cars/car10.jpg"
 
-    sample1 = "cars/sample1.png"
-    sample2 = "cars/sample2.png"
 
-    detect_plate(car1)
+    detect_plate(car6)
 
 
 
