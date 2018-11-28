@@ -5,7 +5,7 @@ import imutils
 minPlateW=90
 minPlateH=30
 
-def detect_plate_region(car_image):
+def detect_plate_region_1(car_image):
     # Since license plate have great contrast between plate background
     # and plate characters, we perform Black Hat operation on gray scale
     # aka the difference between source image and Closing operation in order
@@ -114,7 +114,7 @@ def detect_plate(car_image):
     img = cv2.imread(car_image)
     if img.shape[1] > 640:
         img = imutils.resize(img, width=640)
-    regions = detect_plate_region(car_image)
+    regions = detect_plate_region_1(car_image)
     # regions = detect_origin(car_image)
     print(len(regions))
 
@@ -127,8 +127,48 @@ def detect_plate(car_image):
 
 
 
-def plate_region(car_image):
-    pass
+def detect_plate_region_2(car_image):
+    img = cv2.imread(car_image)
+    if img.shape[1] > 640:
+        img = imutils.resize(img, width=640)
+
+    # STEP 1 Gaussian Filter
+    gaussian_img = cv2.GaussianBlur(img, (5, 5), 0)
+    cv2.imshow("Gaussian Blur", gaussian_img)
+    cv2.waitKey(0)
+
+    # STEP 2 Gray Scale
+    gray_img = cv2.cvtColor(gaussian_img, cv2.COLOR_BGR2GRAY)
+    cv2.imshow("Gray Image", gray_img)
+    cv2.waitKey(0)
+
+    # STEP 3 Sobel X direction
+    ddepth = cv2.CV_64F
+    sobel_x = cv2.Sobel(gray_img, ddepth=ddepth, dx=1, dy=0, ksize=-1)
+    sobel_x_abs = np.absolute(sobel_x)
+    (min_val, max_val) = (np.min(sobel_x_abs), np.max(sobel_x_abs))
+    sobel_x_scale = (255 * ((sobel_x_abs - min_val) / (max_val - min_val))).astype("uint8")
+
+    cv2.imshow("sobel x-direction scale", sobel_x_scale)
+    cv2.waitKey(0)
+
+    # STEP 4 OTSU
+    ret, otsu_thresh = cv2.threshold(sobel_x_scale, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+    cv2.imshow("OTSU threshold", otsu_thresh)
+    cv2.waitKey(0)
+
+    #STEP 5 Closing
+    rectangle_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 7))
+    sobel_x_closing = cv2.morphologyEx(otsu_thresh, cv2.MORPH_CLOSE, rectangle_kernel)
+    cv2.imshow("sobel x-direction closing", sobel_x_closing)
+    cv2.waitKey(0)
+
+
+
+
+
+
+
 
 
 
@@ -146,7 +186,9 @@ if __name__ == "__main__":
     car10 = "cars/car10.jpg"
 
 
-    detect_plate(car2)
+    # detect_plate(car1)
+    #detect_plate_region_1(car1)
+    detect_plate_region_2(car10)
 
 
 

@@ -82,6 +82,8 @@ def segmentation(plate_image):
         print("Using enhance algorithm")
 
         threshold = threshold_plate_enhance(plate_image)
+        cv2.imshow("Thresh Binary Inverse Enhance", threshold)
+        cv2.waitKey(0)
 
         # Find connecting regions of threshold regions
         connecting_regions = measure.label(threshold, neighbors=8, background=0)
@@ -234,10 +236,11 @@ if __name__ == "__main__":
     plate7 = "plates/plate7.png"
     plate8 = "plates/plate8.png"
     plate9 = "plates/plate9.png"
+    plate10 = "plates/plate10.png"
 
 
     # segmentation(plate1)
     #threshold_plate_enhance(plate6)
-    scissor(plate3)
+    scissor(plate10)
 
 
