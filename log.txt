@@ -135,6 +135,29 @@ An image thresholding algorithm for reduction of a gray level image to a binary 
 作用在于segmentation
 
 
+方案一：
+
+
+方案二: 
+https://blog.csdn.net/linqianbi/article/details/79096630
+- Gaussian Filter
+- 灰度图
+- Sobel x (conver sobel abs)
+- Otsu
+- Closing
+
+方案三
+http://www.cnblogs.com/thunder-wu/p/6985169.html?utm_source=itdadao&utm_medium=referral
+
+方案四：
+https://www.cnblogs.com/polly333/p/7367479.html
+
+方案五：
+http://blog.sina.com.cn/s/blog_1754158f50102wpmi.html
+
+
+
+
 
 
 
