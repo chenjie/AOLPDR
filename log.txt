@@ -160,5 +160,23 @@ http://blog.sina.com.cn/s/blog_1754158f50102wpmi.html
 
 
 
+============================================
+ Character Recognition
+============================================
+Use Tensorflor Extended MNIST aka EMNIST
+Follow tutorial on tensorflow websites and tutorial on Towards Data Science
+
+
+https://towardsdatascience.com/tutorial-alphabet-recognition-deeplearning-opencv-97e697b8fb86
+
+https://www.tensorflow.org/tutorials/
+
+https://github.com/Josh-Payne/cs230/blob/master/Alphanumeric-Augmented-CNN/augmented-cnn.py
+
+https://stackoverflow.com/questions/50890713/reading-emnist-dataset
+
+
+
+
 
 
