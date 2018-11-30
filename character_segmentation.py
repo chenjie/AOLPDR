@@ -73,8 +73,8 @@ def segmentation(plate_image):
                 cv2.drawContours(charCandidates, [hull], -1, 255, -1)
                 count += 1
 
-    # cv2.imshow("charCandidates", charCandidates)
-    # cv2.waitKey(0)
+    cv2.imshow("charCandidates", charCandidates)
+    cv2.waitKey(0)
     print("There are: " + str(len(np.unique(connecting_regions))) + " connecting region")
     print(str(count) + " regions are plate characters")
 
@@ -239,8 +239,8 @@ if __name__ == "__main__":
     plate10 = "plates/plate10.png"
 
 
-    # segmentation(plate1)
+    segmentation(plate1)
     #threshold_plate_enhance(plate6)
-    scissor(plate1)
+    #scissor(plate1)
 
 

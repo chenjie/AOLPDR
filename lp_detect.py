@@ -286,7 +286,7 @@ if __name__ == "__main__":
 
 
     # detect_plate(car1)
-    # detect_plate_region_1(car1)
+    detect_plate_region_1(car1)
     # detect_plate_region_2(car1)
     # detect_plate_region_3(car1)
     # detect_plate_region_4(car10)
