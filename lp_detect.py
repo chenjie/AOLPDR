@@ -214,6 +214,57 @@ def detect_plate_region_3(car_image):
 
 
 
+def detect_plate_region_4(car_image):
+    img = cv2.imread(car_image)
+    if img.shape[1] > 640:
+        img = imutils.resize(img, width=640)
+
+    # STEP 1 HSV
+    img_hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+    _, _, gray_img = cv2.split(img_hsv)
+    cv2.imshow("Gray Image", gray_img)
+    cv2.waitKey(0)
+
+    # STEP 2 Enhance Contrast
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (10, 5))
+    img_tophat = cv2.morphologyEx(gray_img, cv2.MORPH_TOPHAT, kernel)
+    img_blackhat = cv2.morphologyEx(gray_img, cv2.MORPH_BLACKHAT, kernel)
+
+    cv2.imshow("tophat operation", img_tophat)
+    cv2.waitKey(0)
+    cv2.imshow("blackhat operation", img_blackhat)
+    cv2.waitKey(0)
+
+    img_plus_tophat = cv2.add(gray_img, img_tophat)
+    cv2.imshow("add tophat", img_plus_tophat)
+    cv2.waitKey(0)
+
+    img_plus_tophat_minus_blackhat = cv2.subtract(img_plus_tophat, img_blackhat)
+    cv2.imshow("add tophat subtract blackhat", img_plus_tophat_minus_blackhat)
+    cv2.waitKey(0)
+
+    # STEP 3 Gaussian
+    img_blur = cv2.GaussianBlur(img_plus_tophat_minus_blackhat, (5, 5), 0)
+
+    # STEP 4 Binary Threshold
+    _, image_otsu = cv2.threshold(img_blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    _, image_binary = cv2.threshold(img_blur, 100, 255, cv2.THRESH_BINARY)
+
+    max = float(img_blur.max())
+    min = float(img_blur.min())
+    threshold = max - ((max-min)/2)
+    _, image_binary_threshold = cv2.threshold(img_blur, threshold, 255, cv2.THRESH_BINARY)
+
+    cv2.imshow("otsu+binary", image_otsu)
+    cv2.waitKey(0)
+
+    cv2.imshow("pure binary", image_binary)
+    cv2.waitKey(0)
+
+    cv2.imshow("pure binary with calculated threshold", image_binary_threshold)
+    cv2.waitKey(0)
+
+
 
 
 
@@ -235,9 +286,10 @@ if __name__ == "__main__":
 
 
     # detect_plate(car1)
-    # detect_plate_region_1(car7)
-    #detect_plate_region_2(car4)
-    detect_plate_region_3(car2)
+    # detect_plate_region_1(car1)
+    # detect_plate_region_2(car1)
+    # detect_plate_region_3(car1)
+    # detect_plate_region_4(car10)
 
 
 

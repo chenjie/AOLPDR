@@ -130,6 +130,8 @@ https://www.cnblogs.com/little-monkey/p/7236188.html
 
 APPLYING A SIMPLE BLACKHAT OPERATION IS ENOUGH TO REVEAL THE DARK TEXT OF THE LICENSE PLATE CHARACTERS AGAINST THE LIGHT BACKGROUND.
 
+顶帽操作往往用来分离比邻近点亮一些的板块，在一幅图像具有大幅背景而微小物品比较有规律的情况下，可以使用顶帽运算进行背景提取。黑帽运算后的效果图突出了比原图轮廓周围的区域更暗的区域，这一操作也与选择的核尺寸有关。
+
 OTSU's method
 An image thresholding algorithm for reduction of a gray level image to a binary image. Otsu’s thresholding chooses the threshold to minimize the intraclass variance of the thresholded black and white pixels.
 作用在于segmentation
@@ -151,9 +153,19 @@ http://www.cnblogs.com/thunder-wu/p/6985169.html?utm_source=itdadao&utm_medium=r
 
 方案四：
 https://www.cnblogs.com/polly333/p/7367479.html
+1、图像转化为HSV图像，获取V通道图像
+
+2、提高对比度
+
+3、V图像高斯滤波，去除噪声
+
+4、图像二值化
 
 方案五：
 http://blog.sina.com.cn/s/blog_1754158f50102wpmi.html
+
+方案六：
+https://blog.csdn.net/sumkee911/article/details/79435983
 
 
 

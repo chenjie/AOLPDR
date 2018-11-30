@@ -241,6 +241,6 @@ if __name__ == "__main__":
 
     # segmentation(plate1)
     #threshold_plate_enhance(plate6)
-    scissor(plate10)
+    scissor(plate1)
 
 
