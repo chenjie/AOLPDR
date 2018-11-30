@@ -1,19 +1,29 @@
 import cv2
 import numpy as np
+import imutils
 import os
 import sys
 
 def knn_training():
     img = cv2.imread("training.png")
+    if img.shape[1] > 640:
+        img = imutils.resize(img, width=640)
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    blur_img = cv2.GaussianBlur(gray_img, (5, 5), 0)
+
+    cv2.imshow("original", img)
+    cv2.waitKey(0)
 
     # Binary Threshold Image
-    ret, thresh_img = cv2.threshold(blur_img, 110, 255, cv2.THRESH_BINARY_INV)
+    ret, thresh_img = cv2.threshold(gray_img, 150, 255, cv2.THRESH_BINARY_INV)
+    cv2.imshow("threshold", thresh_img)
+    cv2.waitKey(0)
 
-    # Setup Flattened Images Features
+    # Setup Thresholds
     img_width = 20
     img_height = 30
+    area_threshold = 17.5
+
+    # Setup Flattened Images Features
     flattened_img = np.empty((0, img_width * img_height))
 
     # Setup Character Classifications
@@ -30,17 +40,21 @@ def knn_training():
     contours = cnts[1]
 
     for contour in contours:
-        if cv2.contourArea(contour) > 100:
-            (boxX, boxY, boxW, boxH) = cv2.boundingRect(contour)
+        if cv2.contourArea(contour) >= area_threshold:
+            print(cv2.contourArea(contour))
+            boxX, boxY, boxW, boxH = cv2.boundingRect(contour)
 
             # draw currently detected character
-            cv2.rectangle(img, (boxX, boxY), (boxX + boxW), (boxY + boxH), (255, 0, 0), 2)
+            cv2.rectangle(img, (boxX, boxY), (boxX+boxW, boxY+boxH), (255, 0, 0), 2)
 
             # Current detected character
             current_char = thresh_img[boxY:boxY+boxH, boxX:boxX+boxW]
             resized_cur_char = cv2.resize(current_char, (img_width, img_height))
             reshape_cur_char = resized_cur_char.reshape((1, img_width*img_height))
             flattened_img = np.append(flattened_img, reshape_cur_char, axis=0)
+
+            cv2.imshow("Training Image", img)
+            cv2.imshow("Current Character", resized_cur_char)
 
             # Get current character classification from keyboard input
             current_class = cv2.waitKey(0)

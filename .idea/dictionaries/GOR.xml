@@ -2,6 +2,7 @@
   <dictionary name="GOR">
     <words>
       <w>otsu</w>
+      <w>resized</w>
       <w>sobel</w>
     </words>
   </dictionary>
