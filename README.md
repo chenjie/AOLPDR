@@ -15,7 +15,7 @@ Package:
 
 -scipy
 
-After detetion:
+After detection:
 
 ![](detection/homography_plates/masked_cars1_0car_lp.png)
 ![](detection/homography_plates/masked_cars2_0car_lp.png)
