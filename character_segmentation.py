@@ -14,10 +14,10 @@ from skimage import segmentation
 # HEIGHT_UPPER = 0.5
 # HEIGHT_LOWER = 0.3
 
-ASPECT_UPPER = 0.63
+ASPECT_UPPER = 0.65
 ASPECT_LOWER = 0.2
 SOLIDITY_UPPER = 0
-SOLIDITY_LOWER = 0.020
+SOLIDITY_LOWER = 0.02
 HEIGHT_UPPER = 0.88
 HEIGHT_LOWER = 0.3
 
@@ -254,7 +254,7 @@ if __name__ == "__main__":
     plate14 = "plates/plate14.png"
 
 
-    plate_segmentation(plate13)
+    plate_segmentation(plate1)
     #threshold_plate_enhance(plate6)
     #scissor(plate1)
 
