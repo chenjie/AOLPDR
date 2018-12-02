@@ -69,8 +69,12 @@ if __name__ == "__main__":
     plate12 = "plates/plate12.png"
     plate13 = "plates/plate13.png"
     plate14 = "plates/plate14.png"
+    plate15 = "plates/plate15.png"
+    plate16 = "plates/plate16.png"
+    plate17 = "plates/plate17.png"
+    plate18 = "plates/plate18.png"
 
-    charCandidate, charThreshold = segmenation.plate_segmentation(plate12)
+    charCandidate, charThreshold = segmenation.plate_segmentation(plate14)
     recognition(charCandidate, charThreshold)
 
 

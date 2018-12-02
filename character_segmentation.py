@@ -26,7 +26,9 @@ def plate_segmentation(plate_image):
     plate = cv2.imread(plate_image)
     gray_plate = cv2.cvtColor(plate,cv2.COLOR_BGR2GRAY)
     # Transform plate to binary
-    ret, threshold = cv2.threshold(gray_plate, 90, 255, cv2.THRESH_BINARY_INV)
+    # ret, threshold = cv2.threshold(gray_plate, 90, 255, cv2.THRESH_BINARY_INV)
+
+    threshold = cv2.adaptiveThreshold(gray_plate, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 125, 35)
     cv2.imshow("Thresh Binary Inverse", threshold)
     cv2.waitKey(0)
 
@@ -65,10 +67,10 @@ def plate_segmentation(plate_image):
             heightRatio = boxH / float(plate.shape[0])
             solidity = cv2.contourArea(c) / float(boxW * boxH)
 
-            print("aspectRatio: " + str(aspectRatio))
-            print("heightRatio: " + str(heightRatio))
-            print("solidity: " + str(solidity))
-            print("===================================")
+            # print("aspectRatio: " + str(aspectRatio))
+            # print("heightRatio: " + str(heightRatio))
+            # print("solidity: " + str(solidity))
+            # print("===================================")
 
             # determine if the aspect ratio, solidity, and height of the contour pass
             # the rules tests
@@ -131,10 +133,10 @@ def plate_segmentation(plate_image):
                 heightRatio = boxH / float(plate.shape[0])
                 solidity = cv2.contourArea(c) / float(boxW * boxH)
 
-                print("aspectRatio: " + str(aspectRatio))
-                print("heightRatio: " + str(heightRatio))
-                print("solidity: " + str(solidity))
-                print("===================================")
+                # print("aspectRatio: " + str(aspectRatio))
+                # print("heightRatio: " + str(heightRatio))
+                # print("solidity: " + str(solidity))
+                # print("===================================")
 
                 # determine if the aspect ratio, solidity, and height of the contour pass
                 # the rules tests
@@ -161,7 +163,8 @@ def plate_segmentation(plate_image):
 
     return (charCandidates, charThreshold)
 
-
+def binary_threshold(plate_image):
+    pass
 
 def threshold_plate_enhance(plate_image):
     img = cv2.imread(plate_image, 0)
@@ -191,7 +194,6 @@ def threshold_plate_enhance(plate_image):
     HlowShift = scipy.fftpack.ifftshift(Hlow.copy())
     HhighShift = scipy.fftpack.ifftshift(Hhigh.copy())
 
-    # Filter the image and crop
     If = scipy.fftpack.fft2(imgLog.copy(), (M, N))
     Ioutlow = scipy.real(scipy.fftpack.ifft2(If.copy() * HlowShift, (M, N)))
     Iouthigh = scipy.real(scipy.fftpack.ifft2(If.copy() * HhighShift, (M, N)))
@@ -252,9 +254,12 @@ if __name__ == "__main__":
     plate12 = "plates/plate12.png"
     plate13 = "plates/plate13.png"
     plate14 = "plates/plate14.png"
+    plate15 = "plates/plate15.png"
+    plate16 = "plates/plate16.png"
+    plate17 = "plates/plate17.png"
+    plate18 = "plates/plate18.png"
 
-
-    plate_segmentation(plate1)
+    plate_segmentation(plate9)
     #threshold_plate_enhance(plate6)
     #scissor(plate1)
 
