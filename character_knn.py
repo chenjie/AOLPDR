@@ -28,11 +28,6 @@ def knn_training():
 
     # Setup Character Classifications
     classification = []
-    characters = [ord('0'), ord('1'), ord('2'), ord('3'), ord('4'), ord('5'), ord('6'), ord('7'), ord('8'), ord('9'),
-                     ord('A'), ord('B'), ord('C'), ord('D'), ord('E'), ord('F'), ord('G'), ord('H'), ord('I'), ord('J'),
-                     ord('K'), ord('L'), ord('M'), ord('N'), ord('O'), ord('P'), ord('Q'), ord('R'), ord('S'), ord('T'),
-                     ord('U'), ord('V'), ord('W'), ord('X'), ord('Y'), ord('Z')]
-
 
     # Find Contours
     thresh_img_clone = thresh_img.copy()

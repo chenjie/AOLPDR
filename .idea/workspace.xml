@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c984c4c-ceea-41a3-87c8-feacc9496d30" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/training.png" afterPath="$PROJECT_DIR$/training.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/GOR.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/GOR.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate10.png" afterPath="$PROJECT_DIR$/plates/plate10.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate11.png" afterPath="$PROJECT_DIR$/plates/plate11.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate12.png" afterPath="$PROJECT_DIR$/plates/plate12.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate13.png" afterPath="$PROJECT_DIR$/plates/plate13.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate14.png" afterPath="$PROJECT_DIR$/plates/plate14.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate5.png" afterPath="$PROJECT_DIR$/plates/plate5.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate6.png" afterPath="$PROJECT_DIR$/plates/plate6.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate7.png" afterPath="$PROJECT_DIR$/plates/plate7.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate8.png" afterPath="$PROJECT_DIR$/plates/plate8.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plates/plate9.png" afterPath="$PROJECT_DIR$/plates/plate9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/character_knn.py" afterPath="$PROJECT_DIR$/character_knn.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/character_recognition.py" afterPath="$PROJECT_DIR$/character_recognition.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/character_segmentation.py" afterPath="$PROJECT_DIR$/character_segmentation.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,7 +30,7 @@
       <file leaf-file-name="lp_detect.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lp_detect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="-475">
               <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="15" selection-end-column="44" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -28,18 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plate1.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plates/plate1.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="character_segmentation.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="character_segmentation.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/character_segmentation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2125">
-              <caret line="49" column="12" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="58" />
+            <state relative-caret-position="393">
+              <caret line="30" column="117" lean-forward="false" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -47,11 +51,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="character_knn.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="threshold.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/threshold.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="character_recognition.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/character_recognition.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="74" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="character_knn.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/character_knn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="-33">
+              <caret line="44" column="40" lean-forward="false" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -84,8 +110,10 @@
         <option value="$PROJECT_DIR$/github.py" />
         <option value="$PROJECT_DIR$/plates/lp_detect.py" />
         <option value="$PROJECT_DIR$/lp_detect.py" />
-        <option value="$PROJECT_DIR$/character_segmentation.py" />
+        <option value="$PROJECT_DIR$/threshold.py" />
         <option value="$PROJECT_DIR$/character_knn.py" />
+        <option value="$PROJECT_DIR$/character_recognition.py" />
+        <option value="$PROJECT_DIR$/character_segmentation.py" />
       </list>
     </option>
   </component>
@@ -141,7 +169,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.character_knn">
+  <component name="RunManager" selected="Python.character_segmentation">
     <configuration default="false" name="character_segmentation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -155,24 +183,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="AOLPDR" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/character_segmentation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="github" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="AOLPDR" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/github.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -209,6 +219,42 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="AOLPDR" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/character_knn.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="character_recognition" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="AOLPDR" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/character_recognition.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="threshold" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="AOLPDR" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/threshold.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -278,18 +324,20 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.character_segmentation" />
-      <item index="1" class="java.lang.String" itemvalue="Python.github" />
-      <item index="2" class="java.lang.String" itemvalue="Python.lp_detect" />
-      <item index="3" class="java.lang.String" itemvalue="Python.character_knn" />
+      <item index="1" class="java.lang.String" itemvalue="Python.lp_detect" />
+      <item index="2" class="java.lang.String" itemvalue="Python.character_knn" />
+      <item index="3" class="java.lang.String" itemvalue="Python.character_recognition" />
+      <item index="4" class="java.lang.String" itemvalue="Python.threshold" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.character_knn" />
-        <item index="1" class="java.lang.String" itemvalue="Python.character_segmentation" />
-        <item index="2" class="java.lang.String" itemvalue="Python.lp_detect" />
-        <item index="3" class="java.lang.String" itemvalue="Python.github" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.character_segmentation" />
+        <item index="1" class="java.lang.String" itemvalue="Python.character_recognition" />
+        <item index="2" class="java.lang.String" itemvalue="Python.threshold" />
+        <item index="3" class="java.lang.String" itemvalue="Python.character_knn" />
+        <item index="4" class="java.lang.String" itemvalue="Python.lp_detect" />
       </list>
     </recent_temporary>
   </component>
@@ -310,10 +358,10 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.045779686" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18526466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27349398" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20963855" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -467,11 +515,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/github.py" />
     <entry file="file://$PROJECT_DIR$/plates/lp_detect.py" />
-    <entry file="file://$PROJECT_DIR$/plates/plate1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GenData.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -480,19 +523,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/character_segmentation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2125">
-          <caret line="49" column="12" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/plates/plate1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lp_detect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
+        <state relative-caret-position="-475">
           <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="15" selection-end-column="44" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -500,10 +538,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TrainAndTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1935">
+          <caret line="129" column="47" lean-forward="false" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threshold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/character_knn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="-33">
+          <caret line="44" column="40" lean-forward="false" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/character_recognition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="74" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/character_segmentation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="30" column="117" lean-forward="false" selection-start-line="30" selection-start-column="117" selection-end-line="30" selection-end-column="117" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

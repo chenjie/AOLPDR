@@ -6,16 +6,29 @@ from skimage import measure
 from skimage.filters import threshold_local
 from skimage import segmentation
 
-PLATE_CHAR_ASPECT_RATIO = 1.0
-PLATE_CHAR_HEIGHT_RATIO_UPPER = 0.95
-PLATE_CHAR_HEIGHT_RATIO_LOWER = 0.4
+
+# ASPECT_UPPER = 0.46
+# ASPECT_LOWER = 0.2
+# SOLIDITY_UPPER = 0
+# SOLIDITY_LOWER = 0.25
+# HEIGHT_UPPER = 0.5
+# HEIGHT_LOWER = 0.3
+
+ASPECT_UPPER = 0.65
+ASPECT_LOWER = 0.2
+SOLIDITY_UPPER = 0
+SOLIDITY_LOWER = 0.02
+HEIGHT_UPPER = 0.88
+HEIGHT_LOWER = 0.3
 
 
-def segmentation(plate_image):
+def plate_segmentation(plate_image):
     plate = cv2.imread(plate_image)
     gray_plate = cv2.cvtColor(plate,cv2.COLOR_BGR2GRAY)
     # Transform plate to binary
-    ret, threshold = cv2.threshold(gray_plate, 110, 255, cv2.THRESH_BINARY_INV)
+    # ret, threshold = cv2.threshold(gray_plate, 90, 255, cv2.THRESH_BINARY_INV)
+
+    threshold = cv2.adaptiveThreshold(gray_plate, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 125, 35)
     cv2.imshow("Thresh Binary Inverse", threshold)
     cv2.waitKey(0)
 
@@ -61,9 +74,9 @@ def segmentation(plate_image):
 
             # determine if the aspect ratio, solidity, and height of the contour pass
             # the rules tests
-            keepAspectRatio = 0.2 < aspectRatio < 0.46
-            keepSolidity = solidity > 0.25
-            keepHeight = heightRatio > 0.3 and heightRatio < 0.5
+            keepAspectRatio = ASPECT_LOWER < aspectRatio < ASPECT_UPPER
+            keepSolidity = SOLIDITY_LOWER < solidity
+            keepHeight = HEIGHT_LOWER < heightRatio < HEIGHT_UPPER
 
             # check to see if the component passes all the tests
             if keepAspectRatio and keepSolidity and keepHeight:
@@ -127,9 +140,9 @@ def segmentation(plate_image):
 
                 # determine if the aspect ratio, solidity, and height of the contour pass
                 # the rules tests
-                keepAspectRatio = 0.2 < aspectRatio < 0.46
-                keepSolidity = solidity > 0.25
-                keepHeight = heightRatio > 0.3 and heightRatio < 0.5
+                keepAspectRatio = ASPECT_LOWER < aspectRatio < ASPECT_UPPER
+                keepSolidity = SOLIDITY_LOWER < solidity
+                keepHeight = HEIGHT_LOWER < heightRatio < HEIGHT_UPPER
 
                 # check to see if the component passes all the tests
                 if keepAspectRatio and keepSolidity and keepHeight:
@@ -139,18 +152,19 @@ def segmentation(plate_image):
                     cv2.drawContours(charCandidates, [hull], -1, 255, -1)
                     count += 1
 
-        # cv2.imshow("charCandidates", charCandidates)
-        # cv2.waitKey(0)
+        cv2.imshow("charCandidates", charCandidates)
+        cv2.waitKey(0)
         print("There are: " + str(len(np.unique(connecting_regions))) + " connecting region")
         print(str(count) + " regions are plate characters")
 
     charThreshold = cv2.bitwise_and(threshold, threshold, mask=charCandidates)
-    # cv2.imshow("charThreshold", charThreshold)
-    # cv2.waitKey(0)
+    cv2.imshow("charThreshold", charThreshold)
+    cv2.waitKey(0)
 
     return (charCandidates, charThreshold)
 
-
+def binary_threshold(plate_image):
+    pass
 
 def threshold_plate_enhance(plate_image):
     img = cv2.imread(plate_image, 0)
@@ -180,7 +194,6 @@ def threshold_plate_enhance(plate_image):
     HlowShift = scipy.fftpack.ifftshift(Hlow.copy())
     HhighShift = scipy.fftpack.ifftshift(Hhigh.copy())
 
-    # Filter the image and crop
     If = scipy.fftpack.fft2(imgLog.copy(), (M, N))
     Ioutlow = scipy.real(scipy.fftpack.ifft2(If.copy() * HlowShift, (M, N)))
     Iouthigh = scipy.real(scipy.fftpack.ifft2(If.copy() * HhighShift, (M, N)))
@@ -237,9 +250,16 @@ if __name__ == "__main__":
     plate8 = "plates/plate8.png"
     plate9 = "plates/plate9.png"
     plate10 = "plates/plate10.png"
+    plate11 = "plates/plate11.png"
+    plate12 = "plates/plate12.png"
+    plate13 = "plates/plate13.png"
+    plate14 = "plates/plate14.png"
+    plate15 = "plates/plate15.png"
+    plate16 = "plates/plate16.png"
+    plate17 = "plates/plate17.png"
+    plate18 = "plates/plate18.png"
 
-
-    segmentation(plate1)
+    plate_segmentation(plate9)
     #threshold_plate_enhance(plate6)
     #scissor(plate1)
 
